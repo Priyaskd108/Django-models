@@ -41,3 +41,12 @@ class Comic(models.Model):
         es lo que retorna cuando llamamos al objeto.
         '''
         return f'{self.id}'
+
+class WishList(models.Model):
+    id = models.BigAutoField(db_column='ID', primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comic = models.ForeignKey(Comic, on_delete=models.CASCADE,default=1,blank=True)
+    favorite = models.BooleanField(default=False)
+    cart = models.BooleanField(default=False)
+    wished_qty = models.IntegerField(default=0)
+    bought_qty = models.IntegerField(default=0)
